@@ -2,6 +2,19 @@ using TileProviders
 using Test
 using Dates
 
+provider = OpenStreetMap()
+TileProviders.geturl(provider, 1, 2, 3) == "https://tile.openstreetmap.org/3/1/2.png"
+
+println(typeof(TileProviders.geturl(provider, 1, 2, 3)))
+println(typeof("https://tile.openstreetmap.org/3/1/2.png"))
+
+url = TileProviders.geturl(provider, 1, 2, 3) 
+oci = occursin("{", url)
+println(oci)
+
+provider = NASAGIBSTimeseries(:AMSRE_Brightness_Temp_89H_Day; date=Date(2010, 05, 07))
+TileProviders.geturl(provider, 1, 2, 3) == "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/AMSRE_Brightness_Temp_89H_Day/default/2010-05-07/GoogleMapsCompatible_Level6/3/2/1.png"
+
 @testset "TileProviders.jl run" begin
     providers = (
         # from leaflet-providers-parsed.json
