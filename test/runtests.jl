@@ -15,6 +15,8 @@ println(oci)
 provider = NASAGIBSTimeseries(:AMSRE_Brightness_Temp_89H_Day; date=Date(2010, 05, 07))
 TileProviders.geturl(provider, 1, 2, 3) == "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/AMSRE_Brightness_Temp_89H_Day/default/2010-05-07/GoogleMapsCompatible_Level6/3/2/1.png"
 
+println("got to providers")
+
 providers = (
     # from leaflet-providers-parsed.json
     OpenStreetMap(),
